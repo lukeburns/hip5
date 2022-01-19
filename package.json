@@ -1,0 +1,11 @@
+{
+  "name": "hip5",
+  "version": "0.1.0",
+  "description": "hip5 plugin for hsd nodes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no tests yet\" && exit 1"
+  },
+  "author": "Luke Burns",
+  "license": "ISC"
+}
