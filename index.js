@@ -7,7 +7,7 @@ class Hip5 extends EventEmitter {
   constructor (protocols, node) {
     super()
     this.ns = node.ns
-    this.ns.middle = this._hip5(protocols, this.middleware)
+    this.ns.middle = this._hip5(protocols, this.middleware, this.resolver)
     this.logger = node.logger.context(this.constructor.id)
     this.opened = false
   }
@@ -80,7 +80,7 @@ class Hip5 extends EventEmitter {
     return res
   }
 
-  _hip5 (protocols, handler) {
+  _hip5 (protocols, handler, resolver) {
     if (typeof protocols === 'string') {
       protocols = [protocols]
     }
@@ -102,7 +102,7 @@ class Hip5 extends EventEmitter {
         return await this.sendSOA()
       }
 
-      const res = await this.resolveHNS(req, tld)
+      const res = typeof resolver === 'function' ? await resolver(req, tld) : await this.resolveHNS(req, tld)
 
       // Look for any supported HIP-5 extension in the NS record
       // and query it for the user's original request.
