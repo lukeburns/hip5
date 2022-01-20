@@ -22,7 +22,7 @@ class Hip5 extends EventEmitter {
   }
 
   // Copy hsd's server.resolve() to lookup a name on HNS normally
-  async resolveHNS (req, tld) {
+  async resolveHNS (tld, req) {
     const [qs] = req.question
     const name = qs.name.toLowerCase()
     const type = qs.type
@@ -102,7 +102,7 @@ class Hip5 extends EventEmitter {
         return await this.sendSOA()
       }
 
-      const res = typeof resolver === 'function' ? await resolver(req, tld) : await this.resolveHNS(req, tld)
+      const res = typeof resolver === 'function' ? await resolver(tld, req) : await this.resolveHNS(tld, req)
 
       // Look for any supported HIP-5 extension in the NS record
       // and query it for the user's original request.

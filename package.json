@@ -1,6 +1,6 @@
 {
   "name": "hip5",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "hip5 plugin for hsd nodes",
   "main": "index.js",
   "scripts": {
